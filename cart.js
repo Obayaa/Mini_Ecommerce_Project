@@ -1,25 +1,22 @@
-// Initialize cart from localStorage or as empty array
 export function initializeCart() {
     return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
-// Save cart to localStorage
 export function saveCart(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Add item to cart
 export function addToCart(product) {
     const cart = initializeCart();
     
-    // Check if product already exists in cart
+    // Checking if product already exists in cart
     const existingItemIndex = cart.findIndex(item => item.id === product.id);
     
     if (existingItemIndex !== -1) {
-        // Product exists, increase quantity
+        // if Product exists, increase quantity
         cart[existingItemIndex].quantity += 1;
     } else {
-        // Product doesn't exist, add with quantity 1
+        // Product doesn't exist, add quantity 1 to the list
         cart.push({
             ...product,
             quantity: 1
@@ -111,7 +108,7 @@ export function showCartModal() {
         });
     }
     
-    // Update modal content
+    // modal content
     modal.innerHTML = `
         <div class="bg-white p-6 rounded-lg max-w-lg w-full max-h-[80vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
